@@ -919,7 +919,7 @@ svg use{pointer-events:none}
     <div class="h-head"><span class="kick">Salve nos favoritos</span><h2>Os 4 links do dia a dia</h2></div>
     <div class="favs">
       <a href="https://sigaa.ufba.br/" target="_blank" rel="noopener"><i><svg><use href="#i-cap"/></svg></i><b>SIGAA</b><small>sigaa.ufba.br</small></a>
-      <a href="https://play.google.com/store/apps/details?id=br.bus2.buzufba.app" target="_blank" rel="noopener"><i><svg><use href="#i-bus"/></svg></i><b>Siga o BuzUFBA</b><small>app do ônibus</small></a>
+      <a data-ios="https://apps.apple.com/br/app/buzufba/id6751292714" href="https://play.google.com/store/apps/details?id=br.bus2.buzufba.app" target="_blank" rel="noopener"><i><svg><use href="#i-bus"/></svg></i><b>Siga o BuzUFBA</b><small>app do ônibus</small></a>
       <a href="https://proae.ufba.br/" target="_blank" rel="noopener"><i><svg><use href="#i-hand"/></svg></i><b>PROAE</b><small>auxílios e RU</small></a>
       <a href="https://supac.ufba.br/" target="_blank" rel="noopener"><i><svg><use href="#i-doc"/></svg></i><b>Calendário</b><small>SUPAC · prazos</small></a>
     </div>
@@ -1048,8 +1048,8 @@ svg use{pointer-events:none}
     <section class="view" id="v-mapa">
       <div class="hero lines"><svg class="ramo"><use href="#ramo"/></svg><span class="pill gold">Mapa dos campi</span><h2>Ache o <em>prédio</em> e vá direto</h2><p>Toque num local para ver o endereço. “Como chegar” abre o app de mapas do seu celular com o destino já marcado.</p></div>
       <div class="mapx">
-        <div class="mbox"><div id="mapc"></div><button class="mloc" id="mloc" aria-label="Usar minha localização"><svg><use href="#i-myloc"/></svg><span>Perto de mim</span></button><div class="mnote" id="mnote" hidden></div><div class="mcard" id="mcard" hidden></div></div>
-        <div class="mpanel"><div class="mtabs" id="mtabs"></div><div class="mq"><svg><use href="#i-search"/></svg><input id="mq" type="search" placeholder="Busque: RU, Poli, PAF III, biblioteca…" aria-label="Buscar local no mapa" autocomplete="off"></div><div class="mcats" id="mcats"></div><details class="mleg"><summary><svg><use href="#i-info"/></svg>Legenda e siglas<svg class="chev"><use href="#i-expand"/></svg></summary><div id="mlegc"></div></details><button class="mlbtn" id="mlbtn"></button><div class="mlist" id="mlist"></div></div>
+        <div class="mbox"><div id="mapc"></div><button class="mfull" id="mfull" aria-label="Mapa em tela cheia"><svg><use href="#i-fs"/></svg></button><button class="mloc" id="mloc" aria-label="Usar minha localização"><svg><use href="#i-myloc"/></svg><span>Perto de mim</span></button><div class="mnote" id="mnote" hidden></div><div class="mcard" id="mcard" hidden></div></div>
+        <div class="mpanel"><div class="mtabs" id="mtabs"></div><div class="mq"><svg><use href="#i-search"/></svg><input id="mq" type="search" placeholder="Busque: RU, Poli, PAF III, biblioteca…" aria-label="Buscar local no mapa" autocomplete="off"></div><div class="mcats" id="mcats"></div><details class="mleg"><summary><svg><use href="#i-info"/></svg>Legenda e siglas<svg class="chev"><use href="#i-expand"/></svg></summary><div id="mlegc"></div></details><button class="mlbtn" id="mlbtn"></button><div class="mvis" id="mvis"></div><div class="mlist" id="mlist"></div></div>
       </div>
       <p class="src">Posição dos prédios a partir do <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>, conferida com os endereços da Carta de Serviços. Mapa de fundo: <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a>. Achou um pin no lugar errado? Avise o seu CA/DA ou a equipe do HelpCalouro.</p>
     </section>
@@ -1072,8 +1072,8 @@ svg use{pointer-events:none}
       <div class="card appcard lines" id="cp-app">
         <div class="ap-txt"><span class="pill gold">App oficial</span><h2>Siga o <em>BuzUFBA</em></h2><p>Aplicativo de informações em tempo real do transporte intercampi da UFBA, para Android e iOS. Gratuito.</p>
           <ul><li>Pontos de parada próximos, no mapa</li><li>Grade horária de todas as linhas</li><li>Onde o ônibus está agora, em tempo real</li><li>Planejamento de trajeto entre dois pontos, a pé + Buzufba</li><li>Alertas de mudanças em rotas e pontos</li><li>Favoritos: linhas, pontos e trajetos</li></ul>
-          <div class="ap-btns"><a class="btn gold" href="https://play.google.com/store/apps/details?id=br.bus2.buzufba.app" target="_blank" rel="noopener">Google Play ↗</a><a class="btn line-w" href="https://proae.ufba.br/pt-br/acompanhe-em-tempo-real-o-transporte-intercampi-da-ufba-com-o-novo-aplicativo-siga-o-buzufba" target="_blank" rel="noopener">Anúncio da PROAE ↗</a></div>
-          <p class="ap-note">No iPhone, procure por “Siga o BuzUFBA” na App Store. Desenvolvido pela Bus2.</p></div>
+          <div class="ap-btns"><a class="btn gold" href="https://play.google.com/store/apps/details?id=br.bus2.buzufba.app" target="_blank" rel="noopener">Google Play ↗</a><a class="btn gold" href="https://apps.apple.com/br/app/buzufba/id6751292714" target="_blank" rel="noopener">App Store ↗</a><a class="btn line-w" href="https://proae.ufba.br/pt-br/acompanhe-em-tempo-real-o-transporte-intercampi-da-ufba-com-o-novo-aplicativo-siga-o-buzufba" target="_blank" rel="noopener">Anúncio da PROAE ↗</a></div>
+          <p class="ap-note">No iPhone, o app aparece na App Store como “BUZUFBA”.</p></div>
         <div class="ap-art" aria-hidden="true"><svg><use href="#i-bus"/></svg></div>
       </div>
       <div class="callout warn"><svg><use href="#i-alert"/></svg><p><b>Cuidado com roteiros antigos.</b> PDFs e guias de anos anteriores trazem paradas e horários que já mudaram. Confira no app Siga o BuzUFBA e nos <a href="https://proae.ufba.br/pt-br/comunicados-proae" target="_blank" rel="noopener">comunicados da PROAE</a> (feriados e paralisações).</p></div>

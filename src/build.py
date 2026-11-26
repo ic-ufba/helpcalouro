@@ -13,7 +13,7 @@ def rep(a,b,n=1):
 
 # ---------- 1. ICONS -> Material Symbols ----------
 MAP={'abc':'abc','alert':'warning','arrow':'arrow_forward','ball':'sports_soccer','bell':'notifications','book':'menu_book','bulb':'lightbulb','bus':'directions_bus','cap':'school','card':'badge','chat':'forum','check':'check_circle','doc':'description','flag':'flag','flask':'science','food':'restaurant','globe':'public','grid':'apps','hand':'volunteer_activism','health':'medical_services','heart':'favorite','home':'home','house':'home_work','lang':'translate','left':'chevron_left','lib':'local_library','map':'location_on','menu':'menu','mind':'psychology','people':'groups','phone':'call','right':'chevron_right','search':'search','star':'star','sync':'sync','cal':'calendar_month',
- 'key':'key','rule':'rule','computer':'computer','movie':'movie','close':'close','expand':'keyboard_arrow_down','museum':'museum','bolt':'bolt','help':'help','event':'event','info':'info','idcard':'id_card','video':'video_call','user':'manage_accounts','stories':'auto_stories','gavel':'gavel','lock':'lock','books':'library_books','pin':'pin_drop','route':'directions','myloc':'my_location','apt':'apartment','theater':'theater_comedy','door':'door_front'}
+ 'key':'key','rule':'rule','computer':'computer','movie':'movie','close':'close','expand':'keyboard_arrow_down','museum':'museum','bolt':'bolt','help':'help','event':'event','info':'info','idcard':'id_card','video':'video_call','user':'manage_accounts','stories':'auto_stories','gavel':'gavel','lock':'lock','books':'library_books','pin':'pin_drop','route':'directions','myloc':'my_location','apt':'apartment','theater':'theater_comedy','door':'door_front','eye':'visibility','eyeoff':'visibility_off','fs':'fullscreen','fsx':'close_fullscreen'}
 syms=[]
 for k,n in MAP.items():
     s=open(D+n+'.svg',encoding='utf-8').read()
@@ -214,7 +214,7 @@ HEAD=open(os.path.join(SRC,'head.html'),encoding='utf-8').read()
 h=re.sub(r'<meta name="theme-color"[^>]*>\s*','',h,count=1)
 h=re.sub(r'<meta name="description"[^>]*>\s*','',h,count=1)
 h=h.replace('</head>',HEAD+'</head>',1)
-SW='<script>if("serviceWorker"in navigator&&location.protocol=="https:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>'
+SW='<script>if(/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform=="MacIntel"&&navigator.maxTouchPoints>1))document.querySelectorAll("a[data-ios]").forEach(a=>a.href=a.dataset.ios)</script><script>if("serviceWorker"in navigator&&location.protocol=="https:")addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>'
 h=h.replace('</body>',SW+'</body>',1)
 OUT=os.path.join(ROOT,'index.html')
 open(OUT,'w',encoding='utf-8').write(h)

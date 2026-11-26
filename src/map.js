@@ -4,6 +4,9 @@ const $m=s=>V.querySelector(s);
 const nrm=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
 const isApple=/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
 const byId=Object.fromEntries(MP.map(p=>[p[0],p]));
+let hid=new Set();try{hid=new Set(JSON.parse(localStorage.getItem('hc-ocultos')||'[]'))}catch(e){}
+const saveH=()=>{try{localStorage.setItem('hc-ocultos',JSON.stringify([...hid]))}catch(e){}};
+const coarse=matchMedia('(pointer:coarse)').matches;
 let map=null,mk={},cur=null,camp='all',cat='',me=null,meMk=null,tried=false,noteShown=false;
 const ll=p=>p[5]+','+p[6];
 const routeUrl=p=>isApple?`https://maps.apple.com/?daddr=${ll(p)}&dirflg=w&q=${encodeURIComponent(p[4])}`:`https://www.google.com/maps/dir/?api=1&destination=${ll(p)}`;
@@ -24,15 +27,20 @@ function list(){
  let r=MP.filter(p=>(!cat||p[2]==cat)&&(q?nrm(p[1]+' '+p[4]+' '+p[7]+' '+p[8]+' '+MCATS[p[2]].l+' '+MCAMP[p[3]]).includes(q):inC(p)));
  if(me)r=r.slice().sort((a,b)=>dist(a)-dist(b));
  const grp=camp=='all'&&!q&&!me;let last='';
- $m('#mlist').innerHTML=r.length?r.map(p=>`${grp&&p[3]!=last?`<h6 class="mgrp">${MCAMP[last=p[3]]}</h6>`:''}<button class="mrow${p[0]==cur?' on':''}" data-id="${p[0]}">${badge(p)}<span><b>${p[4]}</b><small>${q||(camp=='all'&&me)?MCAMP[p[3]]+' · ':''}${p[7]}${me?' · <em>'+fmtD(dist(p))+'</em>':''}</small></span><svg><use href="#i-right"/></svg></button>`).join(''):'<p class="ud-none">Nada encontrado. Tente outro nome, como “RU”, “Poli” ou “biblioteca”.</p>';
+ $m('#mlist').innerHTML=r.length?r.map(p=>`${grp&&p[3]!=last?`<h6 class="mgrp">${MCAMP[last=p[3]]}</h6>`:''}<div class="mrw${hid.has(p[0])?' off':''}"><button class="mrow${p[0]==cur?' on':''}" data-id="${p[0]}">${badge(p)}<span><b>${p[4]}</b><small>${q||(camp=='all'&&me)?MCAMP[p[3]]+' · ':''}${p[7]}${me?' · <em>'+fmtD(dist(p))+'</em>':''}</small></span></button><button class="meye" data-eye="${p[0]}" aria-pressed="${hid.has(p[0])}" aria-label="${hid.has(p[0])?'Mostrar':'Ocultar'} ${p[4]} no mapa" title="${hid.has(p[0])?'Mostrar no mapa':'Ocultar do mapa'}"><svg><use href="#i-${hid.has(p[0])?'eyeoff':'eye'}"/></svg></button></div>`).join(''):'<p class="ud-none">Nada encontrado. Tente outro nome, como “RU”, “Poli” ou “biblioteca”.</p>';
  $m('#mlbtn').innerHTML=`<svg><use href="#i-menu"/></svg>${V.classList.contains('lopen')?'Esconder lista':'Ver lista de locais'} <small>${r.length}</small>`;
- if(map)Object.entries(mk).forEach(([id,m])=>{const p=byId[id];m.getElement().style.display=(!cat||p[2]==cat)?'':'none'});
+ window._mlr=r;const nv=r.filter(p=>!hid.has(p[0])).length;
+ $m('#mvis').innerHTML=`<span>${hid.size?`<b>${hid.size}</b> ${hid.size==1?'local oculto':'locais ocultos'} no mapa`:'Toque no olho para ocultar um local do mapa'}</span>${nv?`<button data-vis="hide">${q||cat||camp!='all'?'Ocultar estes':'Ocultar todos'}</button>`:''}${hid.size?`<button data-vis="show">Mostrar todos</button>`:''}`;
+ vis();
 }
+function vis(){if(map)Object.entries(mk).forEach(([id,m])=>{const p=byId[id];m.getElement().style.display=(!cat||p[2]==cat)&&!hid.has(id)?'':'none'})}
+function toggleH(id,on){if(on===undefined)on=!hid.has(id);on?hid.add(id):hid.delete(id);saveH();list();if(cur==id)card(byId[id])}
 function card(p){
  const c=MCATS[p[2]],d=dist(p),el=$m('#mcard');
- el.innerHTML=`<button class="mx" aria-label="Fechar"><svg><use href="#i-close"/></svg></button><div class="mc-h">${badge(p,'lg')}<div><small>${MCAMP[p[3]]} · ${c.l}${d!=null?' · a '+fmtD(d)+' de você':''}</small><h3>${p[4]}</h3></div></div><p class="mc-a"><svg><use href="#i-map"/></svg>${p[7]}</p>${(()=>{const hh=p[10]?[byId[p[10]]]:MP.filter(x=>x[10]==p[0]);return hh.length?`<p class="mc-also">${p[10]?'Fica em':'Também aqui'}: ${hh.map(x=>`<button data-go="${x[0]}">${x[4]}</button>`).join(' · ')}</p>`:''})()}${p[8]?`<p class="mc-t${p[9]?' ap':''}">${p[9]?'<svg><use href="#i-alert"/></svg>':''}${p[8]}</p>`:''}<a class="mgo" href="${routeUrl(p)}" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Como chegar</a><button class="mmore" aria-expanded="false">Outras opções<svg><use href="#i-expand"/></svg></button><div class="mc-l" hidden><a href="${gUrl(p)}" target="_blank" rel="noopener">Google Maps</a><a href="${wUrl(p)}" target="_blank" rel="noopener">Waze</a><button class="mcopy">Copiar endereço</button></div>`;
+ el.innerHTML=`<button class="mx" aria-label="Fechar"><svg><use href="#i-close"/></svg></button><div class="mc-h">${badge(p,'lg')}<div><small>${MCAMP[p[3]]} · ${c.l}${d!=null?' · a '+fmtD(d)+' de você':''}</small><h3>${p[4]}</h3></div></div><p class="mc-a"><svg><use href="#i-map"/></svg>${p[7]}</p>${(()=>{const hh=p[10]?[byId[p[10]]]:MP.filter(x=>x[10]==p[0]);return hh.length?`<p class="mc-also">${p[10]?'Fica em':'Também aqui'}: ${hh.map(x=>`<button data-go="${x[0]}">${x[4]}</button>`).join(' · ')}</p>`:''})()}${p[8]?`<p class="mc-t${p[9]?' ap':''}">${p[9]?'<svg><use href="#i-alert"/></svg>':''}${p[8]}</p>`:''}<a class="mgo" href="${routeUrl(p)}" target="_blank" rel="noopener"><svg><use href="#i-route"/></svg>Como chegar</a><div class="mc-act"><button class="mmore" aria-expanded="false">Outras opções<svg><use href="#i-expand"/></svg></button><button class="mhide"><svg><use href="#i-${hid.has(p[0])?'eye':'eyeoff'}"/></svg>${hid.has(p[0])?'Mostrar no mapa':'Ocultar do mapa'}</button></div><div class="mc-l" hidden><a href="${gUrl(p)}" target="_blank" rel="noopener">Google Maps</a><a href="${wUrl(p)}" target="_blank" rel="noopener">Waze</a><button class="mcopy">Copiar endereço</button></div>`;
  el.querySelector('.mmore').onclick=e=>{const b=e.currentTarget,l=el.querySelector('.mc-l'),o=l.hidden;l.hidden=!o;b.setAttribute('aria-expanded',o)};
  el.hidden=false;
+ el.querySelector('.mhide').onclick=()=>toggleH(p[0]);
  el.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>sel(b.dataset.go));
  el.querySelector('.mx').onclick=()=>{el.hidden=true;sel(null)};
  el.querySelector('.mcopy').onclick=e=>{const t=p[4]+' · '+p[7]+' ('+ll(p)+')';(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>e.target.textContent='Copiado!').catch(()=>{e.target.textContent=ll(p)})};
@@ -71,7 +79,7 @@ function style(){
 }
 function build(){
  if(!window.maplibregl){note('<b>O mapa não carregou neste navegador.</b> A lista continua funcionando, e “Como chegar” abre seu app de mapas.');return}
- try{map=new maplibregl.Map({container:$m('#mapc'),style:style(),center:[-38.5088,-13.0018],zoom:15.6,minZoom:11,maxZoom:19,maxBounds:[[-38.62,-13.06],[-38.38,-12.88]],dragRotate:false,pitchWithRotate:false,attributionControl:{compact:true}})}catch(e){map=null;note('<b>O mapa não carregou neste navegador.</b> A lista continua funcionando, e “Como chegar” abre seu app de mapas.');return}
+ try{map=new maplibregl.Map({container:$m('#mapc'),style:style(),center:[-38.5088,-13.0018],zoom:15.6,minZoom:11,maxZoom:19,maxBounds:[[-38.62,-13.06],[-38.38,-12.88]],dragRotate:false,cooperativeGestures:coarse,locale:{'CooperativeGesturesHandler.MobileHelpText':'Use dois dedos para mover o mapa, ou toque em ⛶ para tela cheia','CooperativeGesturesHandler.WindowsHelpText':'Use Ctrl + rolagem para dar zoom','CooperativeGesturesHandler.MacHelpText':'Use ⌘ + rolagem para dar zoom'},pitchWithRotate:false,attributionControl:{compact:true}})}catch(e){map=null;note('<b>O mapa não carregou neste navegador.</b> A lista continua funcionando, e “Como chegar” abre seu app de mapas.');return}
  map.touchZoomRotate.disableRotation();
  map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
  map.on('error',e=>{if(!noteShown&&e&&e.error&&/fetch|Failed|NetworkError|load/i.test(String(e.error.message||e.error))){noteShown=true;note('O fundo do mapa não carregou (conexão?). Os pins e o “Como chegar” continuam funcionando.')}});
@@ -94,6 +102,9 @@ V.addEventListener('click',e=>{
  if(t.dataset.c){camp=t.dataset.c;cat='';$m('#mq').value='';tabs();cats();list();legend();$m('#mcard').hidden=true;sel(null);fitCamp(camp,1)}
  else if(t.dataset.k!==undefined&&t.closest('#mcats')){cat=t.dataset.k;cats();list()}
  else if(t.classList.contains('mrow')){sel(t.dataset.id);if(innerWidth<900)$m('.mbox').scrollIntoView({behavior:'smooth',block:'start'})}
+ else if(t.dataset.eye){toggleH(t.dataset.eye)}
+ else if(t.dataset.vis){if(t.dataset.vis=='show')hid.clear();else (window._mlr||[]).forEach(p=>hid.add(p[0]));saveH();list();if(cur)card(byId[cur])}
+ else if(t.id=='mfull'){const on=!V.classList.contains('mfs');V.classList.toggle('mfs',on);document.body.classList.toggle('lock',on);t.innerHTML=`<svg><use href="#i-${on?'fsx':'fs'}"/></svg>`;t.setAttribute('aria-label',on?'Sair da tela cheia':'Mapa em tela cheia');if(map){if(coarse)on?map.cooperativeGestures.disable():map.cooperativeGestures.enable();setTimeout(()=>map.resize(),60)}}
  else if(t.id=='mlbtn'){V.classList.toggle('lopen');list()}
  else if(t.id=='mloc'){
   if(!navigator.geolocation){note('Seu navegador não informa a localização.');return}

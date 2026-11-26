@@ -281,3 +281,21 @@ body.lock{overflow:hidden}
 @media(max-width:700px){.view .card.appcard{padding:26px 22px!important}.view .card.sos{padding:24px 20px!important}}
 .wk-l{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.wk-l a{margin-top:16px}
 .wk-l{gap:6px}.wk-l a{padding:9px 12px}
+/* v22: ocultar pontos, tela cheia, gestos */
+.mrw{display:flex;align-items:stretch;border-bottom:1.5px solid #E9E2D2}
+.mrw .mrow{border-bottom:0;flex:1;min-width:0}
+.meye{flex:none;width:44px;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:#A79C82;border-radius:12px}
+.meye svg{width:20px;height:20px}.meye:hover{color:var(--virtute);background:#EFE8D7}
+.mrw.off .mrow{opacity:.45}.mrw.off .meye{color:var(--brasa)}
+.mvis{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:10px 2px 6px;font-size:12.5px;color:var(--cinza)}
+.mvis span{flex:1 1 100%}.mvis b{color:var(--brasa)}
+.mvis button{border:1.5px solid #E1D8C4;background:#fff;border-radius:999px;padding:6px 11px;font:700 12px var(--sans,Manrope);color:var(--noite);cursor:pointer}.mvis button:hover{border-color:var(--virtute);color:var(--virtute)}
+.mc-act{display:flex;justify-content:center;gap:4px;margin-top:8px}.mc-act .mmore{margin:0}
+.mhide{display:flex;align-items:center;gap:5px;padding:6px 10px;border:0;background:none;color:var(--cinza);font:700 12.5px var(--sans,Manrope);cursor:pointer;border-radius:999px}.mhide svg{width:16px;height:16px}.mhide:hover{color:var(--brasa);background:#EFE8D7}
+.mfull{position:absolute;right:14px;bottom:14px;z-index:3;width:42px;height:42px;border-radius:14px;border:0;background:#fff;box-shadow:0 4px 14px rgba(18,23,63,.22);display:grid;place-items:center;cursor:pointer;color:var(--noite)}
+.mfull svg{width:24px;height:24px}
+#v-mapa.mfs .mbox{position:fixed!important;inset:0!important;height:100%!important;min-height:0!important;margin:0!important;border-radius:0!important;z-index:300}
+#v-mapa.mfs .mfull{top:calc(14px + env(safe-area-inset-top));bottom:auto;right:64px}
+.mcard:not([hidden])~.mfull,.mbox:has(.mcard:not([hidden])) .mfull{display:none}
+.maplibregl-cooperative-gesture-screen{background:rgba(18,23,63,.55)!important;font:700 16px var(--sans,Manrope)!important}
+.maplibregl-cooperative-gesture-screen .maplibregl-mobile-message{padding:0 30px;text-align:center}
