@@ -99,7 +99,7 @@ HOME=f'''<section class="view" id="v-inicio">
     <div class="wk4">
       <div class="wk"><span class="kick">Passo 1</span><h3>Entre no SIGAA</h3><p>Login e senha chegam no e-mail que você usou na inscrição.</p><a href="#sigaa" data-jump="sg-login">Como entrar {ic('arrow_forward')}</a><i>1</i></div>
       <div class="wk"><span class="kick">Passo 2</span><h3>Veja suas aulas</h3><p>Você já está matriculado(a) no 1º semestre. O horário vem em código, tipo 24N12.</p><a href="#sigaa" data-jump="sg-hor">Ler meu horário {ic('arrow_forward')}</a><i>2</i></div>
-      <div class="wk"><span class="kick">Passo 3</span><h3>Saiba chegar</h3><p>O Buzufba é grátis e dá para ver em tempo real no app Siga o BuzUFBA.</p><a href="#campus" data-jump="cp-app">Rotas e app {ic('arrow_forward')}</a><i>3</i></div>
+      <div class="wk"><span class="kick">Passo 3</span><h3>Saiba chegar</h3><p>Ache o prédio no mapa e abra a rota no celular. O Buzufba é grátis e aparece em tempo real no app.</p><div class="wk-l"><a href="#mapa">Mapa {ic('arrow_forward')}</a><a href="#campus" data-jump="cp-app">Buzufba {ic('arrow_forward')}</a></div><i>3</i></div>
       <div class="wk"><span class="kick">Passo 4</span><h3>Garanta seu apoio</h3><p>Auxílio da PROAE sai por edital, com prazo curto. Inscreva-se já.</p><a href="#apoio">Ver auxílios {ic('arrow_forward')}</a><i>4</i></div>
     </div>
     {wkpre}

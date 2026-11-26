@@ -1057,6 +1057,12 @@ body.lock{overflow:hidden}
 .sf-credit{max-width:1240px;margin:10px auto 0;font-size:12.5px;opacity:.85}.sf-credit a{color:var(--chama);text-decoration:underline;text-underline-offset:3px}
 .hh .hh-in p.hnote{font-size:12.5px!important;line-height:1.45!important;margin-top:18px!important;color:rgba(255,255,255,.6)!important}
 .sitefoot .sf-indep b{font:800 13px/1.4 var(--sans,Manrope)!important;letter-spacing:0;color:var(--chama)}
+/* v21: blocos coloridos de propósito (não entram no visual "chapado") */
+.view .card.appcard{background-color:var(--virtute)!important;background-image:repeating-linear-gradient(180deg,rgba(8,10,45,.2) 0 4px,transparent 4px 11px)!important;border-radius:28px!important;padding:34px!important;border-top:0!important}
+.view .card.sos{background-color:var(--noite)!important;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 4px,transparent 4px 11px)!important;border-radius:28px!important;padding:28px!important;border-top:0!important}
+@media(max-width:700px){.view .card.appcard{padding:26px 22px!important}.view .card.sos{padding:24px 20px!important}}
+.wk-l{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.wk-l a{margin-top:16px}
+.wk-l{gap:6px}.wk-l a{padding:9px 12px}
 </style>
 <meta name="description" content="Guia do calouro da UFBA: primeiros passos, SIGAA, matrícula, RU, Buzufba, bibliotecas, assistência estudantil e mapa dos campi com rota no celular.">
 <meta name="author" content="Eduarda Almeida">
@@ -1130,7 +1136,7 @@ body.lock{overflow:hidden}
     <div class="wk4">
       <div class="wk"><span class="kick">Passo 1</span><h3>Entre no SIGAA</h3><p>Login e senha chegam no e-mail que você usou na inscrição.</p><a href="#sigaa" data-jump="sg-login">Como entrar <svg class="mi"><use href="#i-arrow"/></svg></a><i>1</i></div>
       <div class="wk"><span class="kick">Passo 2</span><h3>Veja suas aulas</h3><p>Você já está matriculado(a) no 1º semestre. O horário vem em código, tipo 24N12.</p><a href="#sigaa" data-jump="sg-hor">Ler meu horário <svg class="mi"><use href="#i-arrow"/></svg></a><i>2</i></div>
-      <div class="wk"><span class="kick">Passo 3</span><h3>Saiba chegar</h3><p>O Buzufba é grátis e dá para ver em tempo real no app Siga o BuzUFBA.</p><a href="#campus" data-jump="cp-app">Rotas e app <svg class="mi"><use href="#i-arrow"/></svg></a><i>3</i></div>
+      <div class="wk"><span class="kick">Passo 3</span><h3>Saiba chegar</h3><p>Ache o prédio no mapa e abra a rota no celular. O Buzufba é grátis e aparece em tempo real no app.</p><div class="wk-l"><a href="#mapa">Mapa <svg class="mi"><use href="#i-arrow"/></svg></a><a href="#campus" data-jump="cp-app">Buzufba <svg class="mi"><use href="#i-arrow"/></svg></a></div><i>3</i></div>
       <div class="wk"><span class="kick">Passo 4</span><h3>Garanta seu apoio</h3><p>Auxílio da PROAE sai por edital, com prazo curto. Inscreva-se já.</p><a href="#apoio">Ver auxílios <svg class="mi"><use href="#i-arrow"/></svg></a><i>4</i></div>
     </div>
     <p class="wk-pre">Ainda está enviando documentos ou esperando a heteroidentificação? Veja <a href="#passos" data-jump="ps-ing">a matrícula de ingresso →</a></p>
@@ -1795,7 +1801,7 @@ const APOIO=[
  {t:'Cadastro Geral',ic:'doc',p:'Registro que caracteriza sua situação socioeconômica na PROAE, para estudantes da primeira graduação.',items:['Exigido para o Programa Permanecer e auxílios eventuais','Chamadas publicadas no site da PROAE (por campus)','Benefícios regulares têm análise junto com o edital de seleção']},
  {t:'Creche UFBA',ic:'people',p:'Creche para filhos(as) de estudantes, professores e técnicos, de 4 meses a 3 anos e 11 meses. Há também o Auxílio Creche da PROAE.',items:['Vaga por edital da PROAE, publicado a cada semestre','Seg. a sex., 7h–18h · Rua Padre Feijó, 52 · Canela','(71) 3283-7765 · creche@ufba.br'],links:[['https://proae.ufba.br/pt-br/editais-de-creche','Editais de creche'],['https://cartadeservicos.ufba.br/creche-ufba','Carta de Serviços']]},
  {t:'Ações afirmativas',ic:'heart',p:'Programas Permanecer e Sankofa, acolhimento a estudantes indígenas, quilombolas, pessoas trans e ações de gênero e diversidade.',items:['Bolsa Permanência do MEC para indígenas aldeados(as) e quilombolas: inscrição no sistema do MEC (SISBP)','Orientação pela coordenação de ações afirmativas da PROAE']},
- {t:'NAPE · acessibilidade',ic:'hand',p:'Núcleo de Apoio à Inclusão do Aluno com Necessidades Educativas Especiais.',items:['Apoio a estudantes com deficiência, TGD e altas habilidades/superdotação','Assessoria pedagógica a professores e coordenações'],links:[['https://www.napeacessivel.ufba.br/','NAPE']]},
+ {t:'NAPE · acessibilidade',ic:'hand',p:'Núcleo de Apoio à Inclusão do Aluno com Necessidades Educacionais Especiais.',items:['Apoio a estudantes com deficiência, TGD e altas habilidades/superdotação','Assessoria pedagógica a professores e coordenações'],links:[['https://www.napeacessivel.ufba.br/','NAPE']]},
  {t:'Carteirinha estudantil (CIE)',ic:'card',p:'Documento para meia-entrada em cinema, teatro e shows, emitido por entidades estudantis (UNE, UBES, ANPG).',items:['Gratuita para estudantes inscritos no CadÚnico, conforme a UNE','Diferente da meia passagem de ônibus (SalvadorCard)']},
 ];
 
@@ -1940,7 +1946,7 @@ const GLOS=[
  ['SIUNIS','Sistema Universitário de Saúde.'],
  ['SMURB','Serviço Médico Universitário Rubens Brasil Soares.'],
  ['HUPES','Complexo Hospitalar Universitário Prof. Edgard Santos.'],
- ['NAPE','Núcleo de Apoio à Inclusão do Aluno com Necessidades Educativas Especiais.'],
+ ['NAPE','Núcleo de Apoio à Inclusão do Aluno com Necessidades Educacionais Especiais.'],
  ['IHAC','Instituto de Humanidades, Artes e Ciências Prof. Milton Santos.'],
  ['PAF','Pavilhão de Aulas (PAF I, PAF III…).'],
  ['CA · DA · DCE','Representações estudantis: do curso (CA/DA) e de toda a UFBA (DCE).'],

@@ -275,3 +275,9 @@ body.lock{overflow:hidden}
 .sf-credit{max-width:1240px;margin:10px auto 0;font-size:12.5px;opacity:.85}.sf-credit a{color:var(--chama);text-decoration:underline;text-underline-offset:3px}
 .hh .hh-in p.hnote{font-size:12.5px!important;line-height:1.45!important;margin-top:18px!important;color:rgba(255,255,255,.6)!important}
 .sitefoot .sf-indep b{font:800 13px/1.4 var(--sans,Manrope)!important;letter-spacing:0;color:var(--chama)}
+/* v21: blocos coloridos de propósito (não entram no visual "chapado") */
+.view .card.appcard{background-color:var(--virtute)!important;background-image:repeating-linear-gradient(180deg,rgba(8,10,45,.2) 0 4px,transparent 4px 11px)!important;border-radius:28px!important;padding:34px!important;border-top:0!important}
+.view .card.sos{background-color:var(--noite)!important;background-image:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 4px,transparent 4px 11px)!important;border-radius:28px!important;padding:28px!important;border-top:0!important}
+@media(max-width:700px){.view .card.appcard{padding:26px 22px!important}.view .card.sos{padding:24px 20px!important}}
+.wk-l{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}.wk-l a{margin-top:16px}
+.wk-l{gap:6px}.wk-l a{padding:9px 12px}
