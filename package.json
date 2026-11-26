@@ -1,0 +1,13 @@
+{
+  "name": "helpcalouro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HelpCalouro UFBA: guia de sobrevivência do calouro da Universidade Federal da Bahia.",
+  "scripts": {
+    "build": "python3 src/build.py"
+  },
+  "devDependencies": {
+    "@material-symbols/svg-400": "0.49.0",
+    "maplibre-gl": "4.7.1"
+  }
+}
